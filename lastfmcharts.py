@@ -77,7 +77,7 @@ for a in sys.argv[1:]:
 					display_ranknums = False
 					print("Don`t display rank numbers...")
 
-if(lastfm_user == ""):
+if(lastfmuser == ""):
 	print("Need at least a last.fm username. Aborting...")
 	sys.exit()
 
@@ -118,16 +118,20 @@ for s in soup.find_all("td", "chartlist-countbar"):
 	scrobble = s.span.text
 	scrobbles.append(int(scrobble.strip("\n Scrobles")))
 
+# adjust value of limit if we have fewer results than limit:
 if len(scrobbles)<limit:
 	limit = len(scrobbles)
 
+# trim the results:
+del result[limit:]
+
 # printing the charts:
 print("\n\nDisplaying %s-charts for user %s between %s and %s\n\n" % (charttype, lastfmuser, datefrom, dateto))
-for n in range(limit):
+for n,line in enumerate((result)):
 	output = ""
 	if display_ranknums:
 		output = str(n+1) + " - "
-	output = output + result[n]
+	output = output + line
 	if display_scrobbles:
 		output = output + " (" + str(scrobbles[n]) + ")"
 	print(output)
