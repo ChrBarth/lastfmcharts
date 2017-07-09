@@ -25,4 +25,5 @@ Grabs the top 10 (l=10) albums(c=albums) of the last.fm user joesmith for the ti
 
 ## known issues:
 
-special characters in album- and songtitles result in "unknown" since BeautifulSoup (the python-library that does all the dirty work) seems to have a problem with those.
+~~special characters in album- and songtitles result in "unknown" since BeautifulSoup (the python-library that does all the dirty work) seems to have a problem with those.~~
+(suddenly works as expected...)
