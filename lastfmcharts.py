@@ -97,8 +97,10 @@ if charttype == "albums" or charttype == "tracks":
 
 # number of scrobbles:
 for s in soup.find_all("td", "chartlist-countbar"):
-	scrobble = s.span.text
-	scrobbles.append(int(scrobble.strip("\n Scrobles")))
+    scrobble = s.span.text
+    # remove dots ( "1.000" => "1000")
+    scrobble = scrobble.replace('.','').strip("\n Scrobbles")
+    scrobbles.append(int(scrobble))
 
 # trim the results:
 del result[limit:]
